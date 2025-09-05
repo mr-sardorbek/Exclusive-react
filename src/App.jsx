@@ -1,6 +1,7 @@
 import './index.css'
 import Banner from './components/banner'
 import Navbar from './components/navbar'
+import HomePage from './pages/home-page'
 
 
 function App() {
@@ -15,7 +16,7 @@ function App() {
       </header>
 
       <main>
-
+       <HomePage/>
       </main>
 
       <footer>

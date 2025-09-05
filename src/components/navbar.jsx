@@ -7,9 +7,9 @@ import UserIcon from "../assets/icons/user-icon.svg";
 
 const Navbar = () => {
   return (
+    <>
     <div className="container mx-auto">
-      <div className="mt-[40px]">
-        <div className="flex items-center">
+        <div className="flex items-center mt-[40px]  ">
             <div className="flex items-center gap-[160px]">
           <h1 className="font-bold text-2xl leading-6 tracking-[3%]">
             Exclusive
@@ -58,19 +58,20 @@ const Navbar = () => {
 
             <div className="flex items-center gap-4">
                 <button>
-                    <img style={{ cursor: "pointer" }} src={WishlistIcon} alt="" />
+                    <img style={{ cursor: "pointer" }} src={WishlistIcon} alt="wishlist-icon" />
                 </button>
                 <button>
-                    <img style={{ cursor: "pointer" }} src={CartIcon} alt="" />
+                    <img style={{ cursor: "pointer" }} src={CartIcon} alt="cart-icon" />
                 </button>
                 <button>
-                    <img style={{ cursor: "pointer" }} src={UserIcon} alt="" />
+                    <img style={{ cursor: "pointer" }} src={UserIcon} alt="user-icon" />
                 </button>
             </div>
           </div>
         </div>
-      </div>
     </div>
+     <hr className="mt-[16px] my-4 border-t-2 border-gray-300" />
+    </>
   );
 };
 
