@@ -78,7 +78,8 @@ const Cards = () => {
               src={product.img}
               alt={product.title}
             />
-            <p className="absolute top-3 left-3  w-[55px] h-[26px] rounded px-3 py-1 bg-[#DB4444] font-normal text-xs leading-[18px] text-[#fafafa] font-poppins">
+            <p className="absolute top-3 left-3  w-[55px] h-[26px] rounded px-3 py-1 bg-[#DB4444] font-normal text-xs
+             leading-[18px] text-[#fafafa] font-poppins">
               {product.discount}%
             </p>
             <button className="absolute top-3 right-3 bg-[#fff] rounded-[50%] cursor-pointer">

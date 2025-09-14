@@ -107,7 +107,8 @@ background-color: rgb(237, 238, 238) !important;
 
 
 
-.add-to-cart-btn { position: absolute;
+.add-to-cart-btn { 
+	position: absolute;
 	 width: 100%; height: 41px;
 	  overflow: hidden; left: 0;
 	bottom: -41px; border: none;
