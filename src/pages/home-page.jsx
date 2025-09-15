@@ -8,6 +8,7 @@ import SellingProduct from '../components/selling-product'
 import ProductBanner from '../components/product-banner'
 import OurProducts from '../components/our-products'
 import Arrival from '../components/arrival'
+import Services from '../components/services'
 
 
 const HomePage = () => {
@@ -39,6 +40,7 @@ const HomePage = () => {
       </div>
       <Sections title="Featured" tag="New Arrival" showTimer={false} showButtons={false}/>
       <Arrival/>
+      <Services/>
     </div>
     </>
   )
