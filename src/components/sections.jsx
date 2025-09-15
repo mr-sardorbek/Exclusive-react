@@ -137,9 +137,7 @@ const Sections = ({ title, tag, showTimer = true, showButtons = true }) => {
           </button>
         </div>
       ) : (
-        <div className="mt-[57px]">
-          <Button type="primary">View All Products</Button>
-          </div>
+        <></>
       )}
     </div>
   );

@@ -140,9 +140,15 @@ background-color: rgb(237, 238, 238) !important;
 	animation: slideArrow 1s infinite ease-in-out;
 }
 
+.jbl-img {
+	filter: drop-shadow(0px 30px 120px #ffffff4b)
+  drop-shadow(0px 30px 120px #ffffff37);
+}
 
 
 
+    
+    
 
 
 

@@ -1,6 +1,4 @@
-// Rozmatov Sardpr
 import React from "react";
-import Cellphone from "../assets/icons/cellphone.svg";
 
 const categories = [
   {

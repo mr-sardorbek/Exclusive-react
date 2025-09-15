@@ -1,71 +1,62 @@
-import React from "react";
-import Gamepad from "../assets/images/havit-gamepad.png";
-import Keyboard from "../assets/images/keyboard.png";
-import Monitor from "../assets/images/monitor.png";
-import Chair from "../assets/images/chair.png";
+import React from 'react'
+import Button from './button'
+import Coat from '../assets/images/coat.png'
+import GucciBag from '../assets/images/gucci-bag.png'
+import Cooler from '../assets/images/cooler.png'
+import Bookself from '../assets/images/bookself.png'
 import HeartIcon from "../assets/icons/heart-icon.svg";
 import EyeIcon from "../assets/icons/eye-icon.svg";
 import FullStar from "../assets/icons/full-star.svg";
 import EmptyStar from "../assets/icons/empty-star.svg";
 import HalfFilledStar from "../assets/icons/star-half-filled.svg";
-import Button from "./button";
+
 
 const products = [
   {
     id: 1,
-    img: Gamepad,
-    title: "HAVIT HV-G92 Gamepad",
-    oldprice: 160,
-    newprice: 120,
+    img: Coat,
+    title: "The north coat",
+    oldprice: 360,
+    newprice: 260,
     discount: -40,
     rating: 5,
-    ratingCount: 88,
+    ratingCount: 65,
   },
   {
     id: 2,
-    img: Keyboard,
-    title: "AK-900 Wired Keyboard",
+    img: GucciBag,
+    title: "Gucci duffle bag",
     oldprice: 1160,
     newprice: 960,
     discount: -35,
-    rating: 4,
-    ratingCount: 75,
+    rating: 4.5,
+    ratingCount: 65,
   },
   {
     id: 3,
-    img: Monitor,
-    title: "IPS LCD Gaming Monitor",
-    oldprice: 400,
-    newprice: 370,
+    img: Cooler,
+    title: "RGB liquid CPU Cooler",
+    oldprice: 170,
+    newprice: 160,
     discount: -30,
-    rating: 5,
-    ratingCount: 99,
+    rating: 4.5,
+    ratingCount: 65,
   },
   {
     id: 4,
-    img: Chair,
-    title: "S-Series Comfort Chair ",
+    img: Bookself,
+    title: "Small BookSelf ",
     oldprice: 400,
-    newprice: 375,
+    newprice: 360,
     discount: -25,
-    rating: 4.5,
-    ratingCount: 99,
-  },
-  {
-    id: 5,
-    img: Chair,
-    title: "S-Series Comfort Chair ",
-    oldprice: 400,
-    newprice: 375,
-    discount: -25,
-    rating: 4.5,
-    ratingCount: 99,
-  },
+    rating: 5,
+    ratingCount: 65,
+  }
 ];
 
-const Cards = () => {
+const SellingProduct = () => {
   return (
-    <div className="max-w-[1170px] mx-auto overflow-x-auto [&::-webkit-scrollbar]:hidden">
+     <div className="mt-[60px] mb-[140px]">
       <div className="flex items-center gap-[30px] w-max ">
       {products.map((product) => (
         <div
@@ -78,10 +69,6 @@ const Cards = () => {
               src={product.img}
               alt={product.title}
             />
-            <p className="absolute top-3 left-3  w-[55px] h-[26px] rounded px-3 py-1 bg-[#DB4444] font-normal text-xs
-             leading-[18px] text-[#fafafa] font-poppins">
-              {product.discount}%
-            </p>
             <button className="absolute top-3 right-3 bg-[#fff] rounded-[50%] cursor-pointer">
               <img src={HeartIcon} alt="hearticon" />
             </button>
@@ -128,8 +115,7 @@ const Cards = () => {
       ))}
     </div>
     </div>
-  );
-};
+  )
+}
 
-export default Cards;
-
+export default SellingProduct
