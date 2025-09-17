@@ -188,12 +188,12 @@ const Services = () => {
 const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    // Skrollni kuzatish
+    
     const handleScroll = () => {
       if (window.scrollY > 500) {
-        setIsVisible(true);   // 500px dan oshsa tugma chiqadi
+        setIsVisible(true); 
       } else {
-        setIsVisible(false);  // 500px dan yuqoriga qaytsa tugma yashiriladi
+        setIsVisible(false); 
       }
     };
 
@@ -201,7 +201,7 @@ const [isVisible, setIsVisible] = useState(false);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Smooth tarzda tepaga qaytarish
+ 
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -230,7 +230,7 @@ const [isVisible, setIsVisible] = useState(false);
           className="fixed flex items-center justify-center w-[46px] h-[46px] rounded-[50%] bg-[#F5F5F5] cursor-pointer 
           hover:bg-[#d4cfcf] transition-all duration-300 bottom-[40px] right-[40px] z-50"
         >
-          <img src={UpArrow} alt="Go to top" />
+          <img src={UpArrow} alt="Go-top" />
         </button>
       )}
     </div>
