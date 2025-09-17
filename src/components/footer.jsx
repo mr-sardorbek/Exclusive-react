@@ -14,7 +14,7 @@ const Footer = () => {
                     <div className='flex items-center justify-between gap-2  w-[217px] h-[48px] border border-white mt-4 '>
                         <input className='flex items-center w-[130px] h-6 ml-4 font-normal text-base leading-6 tracking-[0%]
                         outline-none text-[#9e9898]' type="text" placeholder='Enter your email' />
-                    <img className='mr-3' src={SendIcon} alt="" />
+                   <button className='cursor-pointer'><img className='mr-3' src={SendIcon} alt="SendIcon" /></button>
                     </div>
                 </div>
             </div>
