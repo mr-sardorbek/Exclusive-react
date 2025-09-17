@@ -2,6 +2,7 @@ import './index.css'
 import Banner from './components/banner'
 import Navbar from './components/navbar'
 import HomePage from './pages/home-page'
+import Footer from './components/footer'
 
 
 function App() {
@@ -20,7 +21,7 @@ function App() {
       </main>
 
       <footer>
-
+        <Footer/>
       </footer>
 
     </div>
