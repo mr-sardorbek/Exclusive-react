@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import UpArrow from "../assets/icons/up-arrow.svg";
 
 const services = [
@@ -175,18 +175,45 @@ const services = [
         />
       </svg>
     ),
-    title: "FREE AND FAST DELIVERY",
-    desk: "Free delivery for all orders over $140",
+    title: "MONEY BACK GUARANTEE",
+    desk: "We reurn money within 30 days",
   },
 ];
 
+
+
+
 const Services = () => {
+
+const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    // Skrollni kuzatish
+    const handleScroll = () => {
+      if (window.scrollY > 500) {
+        setIsVisible(true);   // 500px dan oshsa tugma chiqadi
+      } else {
+        setIsVisible(false);  // 500px dan yuqoriga qaytsa tugma yashiriladi
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Smooth tarzda tepaga qaytarish
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
   return (
     <div className="relative flex justify-center gap-[88px]">
       {services.map((service) => (
         <div
         key={service.id}
-         className="flex flex-col items-center justify-between w-[249px] h-[181px]  mb-[140px]">
+         className="flex flex-col items-center justify-between w-[262px] h-[181px]  mb-[140px]">
           {service.icon}
           <p className="font-semibold text-xl leading-7 tracking-[0%] font-poppins mt-6">
             {service.title}
@@ -197,10 +224,15 @@ const Services = () => {
         </div>
       ))}
 
-      <button className="absolute flex items-center justify-center w-[46px] h-[46px] rounded-[50%] bg-[#F5F5F5] cursor-pointer 
-      hover:bg-[#d4cfcf] transition-all duration-300 top-[262px] right-[-113px]">
-        <img src={UpArrow} alt="" />
-      </button>
+      {isVisible && (
+        <button
+          onClick={scrollToTop}
+          className="fixed flex items-center justify-center w-[46px] h-[46px] rounded-[50%] bg-[#F5F5F5] cursor-pointer 
+          hover:bg-[#d4cfcf] transition-all duration-300 bottom-[40px] right-[40px] z-50"
+        >
+          <img src={UpArrow} alt="Go to top" />
+        </button>
+      )}
     </div>
   );
 };
