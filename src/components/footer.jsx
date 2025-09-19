@@ -4,14 +4,13 @@ import Linkedin from "../assets/icons/linkedin.svg";
 import Instagram from "../assets/icons/instagram.svg";
 import Facebook from "../assets/icons/facebook.svg";
 import Twitter from "../assets/icons/twitter.svg";
-import Company from "../assets/icons/company.svg";
 import QrCode from "../assets/images/qrcode.png";
 import GooglePlay from "../assets/images/google-play.png";
 import AppStore from "../assets/images/appstore.png";
 import { Link } from "react-router-dom";
 const Footer = () => {
   return (
-    <div className="bg-[#000] h-[462px] ">
+    <div className="bg-[#000] h-[462px] m-0 p-0">
       <div className="container mx-auto">
         <div className="relative flex   w-[1170px]   h-[238px] top-[80px] mb-[160px]">
           <div className="w-[217px] h-[188px]">

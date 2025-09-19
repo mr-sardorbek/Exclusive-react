@@ -1,31 +1,33 @@
-import './index.css'
-import Banner from './components/banner'
-import Navbar from './components/navbar'
-import HomePage from './pages/home-page'
-import Footer from './components/footer'
+import "./index.css";
+import { Routes, Route } from "react-router-dom";
 
+import Banner from "./components/banner";
+import Navbar from "./components/navbar";
+import HomePage from "./pages/home-page";
+import Footer from "./components/footer";
+import SignUp from "./pages/sign-up";
 
 function App() {
-  
-
   return (
-    <div>
+    <div className="flex flex-col justify-between" >
       <header>
-        <Banner/>
-        <Navbar/>
-
+        <Banner />
+        <Navbar />
       </header>
 
       <main>
-       <HomePage/>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/signup" element={<SignUp />} />
+        </Routes>
       </main>
 
       <footer>
-        <Footer/>
+        <Footer />
       </footer>
-
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
+
