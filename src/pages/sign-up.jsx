@@ -52,7 +52,7 @@ const SignUp = () => {
           <div className="flex items-center justify-center gap-4 w-[248px] mt-8 ml-[61px]">
             <p className="font-normal text-base leading-6 tracking-[0%] font-poppins text-[#4D4D4D]">Already have account?</p>
             <Link className="underline-offset-[10px] font-medium text-base leading-6 tracking-[0%] text-[#4D4D4D]
-            border-b-2 hover:text-[#434242]" to='/'>Log in</Link>
+            border-b-2 hover:text-[#434242]" to='/login'>Log in</Link>
           </div>
         </div>
       </div>
