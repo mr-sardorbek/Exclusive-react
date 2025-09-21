@@ -147,7 +147,10 @@ background-color: rgb(237, 238, 238) !important;
   drop-shadow(0px 30px 120px #ffffff37);
 }
 
-
+.user-modal{
+  background:linear-gradient(180deg, rgba(70,50,100, 0.45), rgba(20, 20, 40, 0.45));
+  
+}
 
     
     
