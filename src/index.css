@@ -152,6 +152,18 @@ background-color: rgb(237, 238, 238) !important;
   
 }
 
+
+@keyframes ping-once {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.5); opacity: 0.6; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.animate-ping-once {
+  animation: ping-once 0.4s ease-in-out;
+}
+
+
     
     
 

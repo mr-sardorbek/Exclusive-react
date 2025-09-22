@@ -1,12 +1,12 @@
 import "./index.css";
 import { Routes, Route } from "react-router-dom";
-
 import Banner from "./components/banner";
 import Navbar from "./components/navbar";
 import HomePage from "./pages/home-page";
 import Footer from "./components/footer";
 import SignUp from "./pages/sign-up";
 import LogIn from "./pages/log-in";
+import Wishlist from "./pages/wishlist-page";
 
 function App() {
   return (
@@ -21,6 +21,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<LogIn/>} />
+          <Route path="/wishlist" element={<Wishlist/>} />
         </Routes>
       </main>
 

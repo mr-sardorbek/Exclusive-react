@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from "react";
 import Button from './button'
 import Coat from '../assets/images/coat.png'
 import GucciBag from '../assets/images/gucci-bag.png'
@@ -55,10 +55,38 @@ const products = [
 ];
 
 const SellingProduct = () => {
+
+   const [wishlist, setWishlist] = useState([]);
+    
+    // Har product uchun like holatini saqlash
+    const [likedProducts, setLikedProducts] = useState([]);
+  
+    useEffect(() => {
+      const saved = JSON.parse(localStorage.getItem("wishlist")) || [];
+      setWishlist(saved);
+      setLikedProducts(saved.map(item => item.id)); // saqlanganlarni like qilindi deb belgilash
+    }, []);
+  
+    const toggleWishlist = (product) => {
+      let updatedWishlist;
+      if (wishlist.find((item) => item.id === product.id)) {
+        updatedWishlist = wishlist.filter((item) => item.id !== product.id);
+        setLikedProducts(prev => prev.filter(id => id !== product.id));
+      } else {
+        updatedWishlist = [...wishlist, product];
+        setLikedProducts(prev => [...prev, product.id]);
+      }
+  
+      setWishlist(updatedWishlist);
+      localStorage.setItem("wishlist", JSON.stringify(updatedWishlist));
+    };
+  
   return (
      <div className="mt-[60px] mb-[140px]">
       <div className="flex items-center gap-[30px] w-max ">
-      {products.map((product) => (
+       {products.map((product, index) => {
+          const isLiked = likedProducts.includes(product.id);
+          return (
         <div
           key={product.id}
           className="product__item w-[270px] h-[350px] "
@@ -69,9 +97,27 @@ const SellingProduct = () => {
               src={product.img}
               alt={product.title}
             />
-            <button className="absolute top-3 right-3 bg-[#fff] rounded-[50%] cursor-pointer">
-              <img src={HeartIcon} alt="hearticon" />
-            </button>
+            <button
+                  onClick={() => toggleWishlist(product)}
+                  className={`wishlist__btn absolute top-3 right-3 bg-[#fff] rounded-full cursor-pointer p-2 ${isLiked ? "animate-ping-once" : ""}`}
+                >
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M8 5C5.7912 5 4 6.73964 4 8.88594C4 10.6185 4.7 14.7305 11.5904 18.8873C11.7138 18.961 11.8555 19 12 19C12.1445 19 12.2862 18.961 12.4096 18.8873C19.3 14.7305 20 10.6185 20 8.88594C20 6.73964 18.2088 5 16 5C13.7912 5 12 7.35511 12 7.35511C12 7.35511 10.2088 5 8 5Z"
+                      stroke={isLiked ? "red" : "black"}
+                      fill={isLiked ? "red" : "none"}
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </button>
             <button className="absolute top-[54px] right-3 bg-[#fff] rounded-[50%] cursor-pointer">
               <img src={EyeIcon} alt="eyeicon" />
             </button>
@@ -112,7 +158,8 @@ const SellingProduct = () => {
             </p>
           </div>
         </div>
-      ))}
+          )
+       })}
     </div>
     </div>
   )
