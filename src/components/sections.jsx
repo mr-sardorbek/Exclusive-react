@@ -4,7 +4,7 @@ import rightarrow from "../assets/icons/icons_arrow-right.svg";
 import leftarrow from "../assets/icons/icons_arrow-left.svg";
 import { Button } from "antd";
 
-const Sections = ({ title, tag, showTimer = true, showButtons = true }) => {
+const Sections = ({ title, tag, showTimer = true, showButtons = true, color = true}) => {
   const [timeLeft, setTimeLeft] = useState({
     days: 3,
     hours: 0,
