@@ -15,7 +15,7 @@ import Button from "./button";
 
 const products = [
   {
-    id: 1,
+    id: "our-1",
     img: DogFood,
     title: "Breed Dry Dog Food",
     newprice: 100,
@@ -23,7 +23,7 @@ const products = [
     ratingCount: 35,
   },
   {
-    id: 2,
+    id: "our-2",
     img: Camera,
     title: "CANON EOS DSLR Camera",
     newprice: 360,
@@ -31,7 +31,7 @@ const products = [
     ratingCount: 95,
   },
   {
-    id: 3,
+    id: "our-3",
     img: Laptop,
     title: "ASUS FHD Gaming Laptop",
     newprice: 700,
@@ -39,7 +39,7 @@ const products = [
     ratingCount: 325,
   },
   {
-    id: 4,
+    id:"our-4",
     img: SetProduct,
     title: "Curology Product Set ",
     newprice: 500,
@@ -47,7 +47,7 @@ const products = [
     ratingCount: 145,
   },
   {
-    id: 5,
+    id: "our-5",
     img: KidsCar,
     title: "Kids Electric Car",
     newprice: 960,
@@ -57,7 +57,7 @@ const products = [
   },
 
   {
-    id: 6,
+    id:"our-6",
     img: Cleats,
     title: "Jr. Zoom Soccer Cleats",
     newprice: 1160,
@@ -66,7 +66,7 @@ const products = [
   },
 
   {
-    id: 7,
+    id:"our-7",
     img: Gamepad,
     title: "GP11 Shooter USB Gamepad",
     newprice: 660,
@@ -76,7 +76,7 @@ const products = [
   },
 
   {
-    id: 8,
+    id: "our-8",
     img: Jacket,
     title: "Quilted Satin Jacket",
     newprice: 660,

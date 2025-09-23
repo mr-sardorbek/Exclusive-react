@@ -24,7 +24,6 @@ const Navbar = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
-
 const [wishlistCount, setWishlistCount] = useState(0);
 
 useEffect(() => {

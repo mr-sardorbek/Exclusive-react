@@ -4,7 +4,6 @@ import Coat from '../assets/images/coat.png'
 import GucciBag from '../assets/images/gucci-bag.png'
 import Cooler from '../assets/images/cooler.png'
 import Bookself from '../assets/images/bookself.png'
-import HeartIcon from "../assets/icons/heart-icon.svg";
 import EyeIcon from "../assets/icons/eye-icon.svg";
 import FullStar from "../assets/icons/full-star.svg";
 import EmptyStar from "../assets/icons/empty-star.svg";
@@ -13,58 +12,55 @@ import HalfFilledStar from "../assets/icons/star-half-filled.svg";
 
 const products = [
   {
-    id: 1,
+    id: "sell-1",
+    title: "Selling Product 1",
+    newprice: 500,
+    oldprice: 650,
+    rating: 4.5,
+    ratingCount: 120,
     img: Coat,
-    title: "The north coat",
-    oldprice: 360,
-    newprice: 260,
-    discount: -40,
-    rating: 5,
-    ratingCount: 65,
   },
   {
-    id: 2,
-    img: GucciBag,
-    title: "Gucci duffle bag",
-    oldprice: 1160,
-    newprice: 960,
-    discount: -35,
-    rating: 4.5,
-    ratingCount: 65,
-  },
-  {
-    id: 3,
-    img: Cooler,
-    title: "RGB liquid CPU Cooler",
-    oldprice: 170,
-    newprice: 160,
-    discount: -30,
-    rating: 4.5,
-    ratingCount: 65,
-  },
-  {
-    id: 4,
-    img: Bookself,
-    title: "Small BookSelf ",
+    id: "sell-2",
+    title: "Selling Product 2",
+    newprice: 320,
     oldprice: 400,
-    newprice: 360,
-    discount: -25,
+    rating: 4,
+    ratingCount: 85,
+    img: GucciBag,
+  },
+  {
+    id: "sell-3",
+    title: "Selling Product 3",
+    newprice: 270,
+    oldprice: 300,
     rating: 5,
-    ratingCount: 65,
-  }
+    ratingCount: 150,
+    img: Cooler,
+  },
+  {
+    id: "sell-4",
+    title: "Selling Product 4",
+    newprice: 210,
+    oldprice: 260,
+    rating: 3.5,
+    ratingCount: 42,
+    img: Bookself,
+  },
 ];
+
 
 const SellingProduct = () => {
 
    const [wishlist, setWishlist] = useState([]);
     
-    // Har product uchun like holatini saqlash
+  
     const [likedProducts, setLikedProducts] = useState([]);
   
     useEffect(() => {
       const saved = JSON.parse(localStorage.getItem("wishlist")) || [];
       setWishlist(saved);
-      setLikedProducts(saved.map(item => item.id)); // saqlanganlarni like qilindi deb belgilash
+      setLikedProducts(saved.map(item => item.id)); 
     }, []);
   
     const toggleWishlist = (product) => {
@@ -84,7 +80,7 @@ const SellingProduct = () => {
   return (
      <div className="mt-[60px] mb-[140px]">
       <div className="flex items-center gap-[30px] w-max ">
-       {products.map((product, index) => {
+       {products.map((product) => {
           const isLiked = likedProducts.includes(product.id);
           return (
         <div

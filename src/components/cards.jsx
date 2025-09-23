@@ -10,9 +10,8 @@ import HalfFilledStar from "../assets/icons/star-half-filled.svg";
 import Button from "./button";
 
 const products = [
-  
   {
-    id: 1,
+    id: "cards-1",
     img: Gamepad,
     title: "HAVIT HV-G92 Gamepad",
     oldprice: 160,
@@ -22,7 +21,7 @@ const products = [
     ratingCount: 88,
   },
   {
-    id: 2,
+    id: "cards-2",
     img: Keyboard,
     title: "AK-900 Wired Keyboard",
     oldprice: 1160,
@@ -32,7 +31,7 @@ const products = [
     ratingCount: 75,
   },
   {
-    id: 3,
+    id: "cards-3",
     img: Monitor,
     title: "IPS LCD Gaming Monitor",
     oldprice: 400,
@@ -42,17 +41,7 @@ const products = [
     ratingCount: 99,
   },
   {
-    id: 4,
-    img: Chair,
-    title: "S-Series Comfort Chair ",
-    oldprice: 400,
-    newprice: 375,
-    discount: -25,
-    rating: 4.5,
-    ratingCount: 99,
-  },
-  {
-    id: 5,
+    id: "cards-4",
     img: Chair,
     title: "S-Series Comfort Chair ",
     oldprice: 400,
@@ -65,43 +54,30 @@ const products = [
 
 const Cards = () => {
   const [wishlist, setWishlist] = useState([]);
-
-  useEffect(() => {
-    const saved = JSON.parse(localStorage.getItem("wishlist")) || [];
-    setWishlist(saved);
-  }, []);
-
- 
-  const toggleWishlist = (product) => {
-    let updatedWishlist;
-    if (wishlist.find((item) => item.id === product.id)) {
-      updatedWishlist = wishlist.filter((item) => item.id !== product.id);
-    } else {
-      updatedWishlist = [...wishlist, product];
-    }
-    setWishlist(updatedWishlist);
-    localStorage.setItem("wishlist", JSON.stringify(updatedWishlist));
-
-    const [wishlistCount, setWishlistCount] = useState(0);
-
-useEffect(() => {
-
-  const storedWishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
-  setWishlistCount(storedWishlist.length);
-
-  const handleWishlistUpdate = () => {
-    const updatedWishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
-    setWishlistCount(updatedWishlist.length);
-  };
-
-  window.addEventListener("wishlist-updated", handleWishlistUpdate);
-  return () => window.removeEventListener("wishlist-updated", handleWishlistUpdate);
-}, []);
-
-  };
-
-  
-
+      
+    
+      const [likedProducts, setLikedProducts] = useState([]);
+    
+      useEffect(() => {
+        const saved = JSON.parse(localStorage.getItem("wishlist")) || [];
+        setWishlist(saved);
+        setLikedProducts(saved.map(item => item.id)); 
+      }, []);
+    
+      const toggleWishlist = (product) => {
+        let updatedWishlist;
+        if (wishlist.find((item) => item.id === product.id)) {
+          updatedWishlist = wishlist.filter((item) => item.id !== product.id);
+          setLikedProducts(prev => prev.filter(id => id !== product.id));
+        } else {
+          updatedWishlist = [...wishlist, product];
+          setLikedProducts(prev => [...prev, product.id]);
+        }
+    
+        setWishlist(updatedWishlist);
+        localStorage.setItem("wishlist", JSON.stringify(updatedWishlist));
+      };
+    
   return (
     <div className="max-w-[1170px] mx-auto overflow-x-auto [&::-webkit-scrollbar]:hidden">
       <div className="flex items-center gap-[30px] w-max ">
@@ -109,10 +85,7 @@ useEffect(() => {
           const isLiked = wishlist.find((item) => item.id === product.id);
 
           return (
-            <div
-              key={product.id}
-              className="product__item w-[270px] h-[350px] "
-            >
+            <div key={product.id} className="product__item w-[270px] h-[350px] ">
               <div className="relative h-[250px] rounded bg-[#F5F5F5] overflow-hidden">
                 <img
                   className="py-[35px] px-[40px]"
@@ -123,10 +96,11 @@ useEffect(() => {
                 leading-[18px] text-[#fafafa] font-poppins">
                   {product.discount}%
                 </p>
+
+                
                 <button
                   onClick={() => toggleWishlist(product)}
-                  className={`wishlist__btn absolute top-3 right-3 bg-[#fff] rounded-full cursor-pointer p-2 
-                  ${isLiked ? "animate-ping-once" : ""}`}
+                  className={`wishlist__btn absolute top-3 right-3 bg-[#fff] rounded-full cursor-pointer p-2 ${isLiked ? "animate-ping-once" : ""}`}
                 >
                   <svg
                     width="24"
@@ -146,6 +120,7 @@ useEffect(() => {
                   </svg>
                 </button>
 
+                
                 <button className="absolute top-[54px] right-3 bg-[#fff] rounded-full cursor-pointer">
                   <img src={EyeIcon} alt="eyeicon" />
                 </button>

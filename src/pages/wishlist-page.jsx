@@ -1,9 +1,5 @@
 import { Button } from 'antd'
 import React, { useEffect, useState } from 'react'
-import Gamepad from "../assets/images/gamepad.png";
-import Jacket from "../assets/images/jacket.png";
-import GucciBag from '../assets/images/gucci-bag.png'
-import Cooler from '../assets/images/cooler.png'
 import DeleteIcon from "../assets/icons/delete.svg";
 import EyeIcon from "../assets/icons/eye-icon.svg";
 import FullStar from "../assets/icons/full-star.svg";
@@ -12,41 +8,6 @@ import HalfFilledStar from "../assets/icons/star-half-filled.svg";
 import Btns from '../components/button'
 
 
-
-const products = [
-  {
-    id: 1,
-    img: GucciBag,
-    title: "Breed Dry Dog Food",
-    newprice: 100,
-    rating: 3,
-    ratingCount: 35,
-  },
-  {
-    id: 2,
-    img: Cooler,
-    title: "CANON EOS DSLR Camera",
-    newprice: 360,
-    rating: 4,
-    ratingCount: 95,
-  },
-  {
-    id: 3,
-    img: Gamepad,
-    title: "ASUS FHD Gaming Laptop",
-    newprice: 700,
-    rating: 5,
-    ratingCount: 325,
-  },
-  {
-    id: 4,
-    img: Jacket,
-    title: "Curology Product Set ",
-    newprice: 500,
-    rating: 4,
-    ratingCount: 145,
-  }
-];
 
 const Wishlist = () => {
 
@@ -66,14 +27,13 @@ const Wishlist = () => {
 
 
   const moveAllToBag = () => {
-  // Bag uchun alohida localStorage yaratamiz
   const bag = JSON.parse(localStorage.getItem("bag")) || [];
 
-  // Wishlistdagi hamma narsani qo‘shamiz
+ 
   const updatedBag = [...bag, ...wishlist];
   localStorage.setItem("bag", JSON.stringify(updatedBag));
 
-  // Wishlistni bo‘shatamiz
+ 
   setWishlist([]);
   localStorage.setItem("wishlist", JSON.stringify([]));
 };
