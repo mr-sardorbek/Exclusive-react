@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import CancelIcon from "../assets/icons/cancelicon.svg";
 import { Button } from "antd";
 
@@ -159,9 +160,9 @@ const CartPage = () => {
             </p>
           </div>
 
-          <div className="flex justify-center">
+          <Link to='/checkout' className="flex justify-center">
             <Button type="primary">Proceed to checkout</Button>
-          </div>
+          </Link>
         </div>
       </div>
     </div>
