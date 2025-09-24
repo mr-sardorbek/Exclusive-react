@@ -24,6 +24,24 @@ const CartPage = () => {
     localStorage.setItem("cart", JSON.stringify(updated));
   };
 
+  // Coupon kod (SARDOR05)
+
+  const [coupon, setCoupon] = useState("");
+  const [discount, setDiscount] = useState(0);
+
+  const subtotal = cartItems.reduce(
+    (acc, item) => acc + item.newprice * item.quantity,
+    0
+  );
+
+  const handleApplyCoupon = () => {
+    if (coupon.trim().toUpperCase() === "SARDOR05") {
+      setDiscount(0.1);
+    } else {
+      setDiscount(0);
+    }
+  };
+
   return (
     <div className="container mx-auto">
       <p className="mt-[80px] mb-[80px] font-normal text-sm font-poppins text-[#909090]">
@@ -87,6 +105,63 @@ const CartPage = () => {
         <div className="flex items-center justify-between mt-6">
           <Button>Return To Shop</Button>
           <Button>Update Cart</Button>
+        </div>
+      </div>
+
+      <div className="flex justify-between items-start mt-[80px] mb-[140px] h-[324px]">
+        <div className="flex items-center gap-4">
+          <input
+            className="w-[300px] h-[56px] opacity-100 py-4 pl-6 rounded border border-solid border-black
+        font-normal text-base leading-6 tracking-[0%] font-poppins outline-none"
+            type="text"
+            placeholder="Coupon Code"
+            value={coupon}
+            onChange={(e) => setCoupon(e.target.value)}
+          />
+          <Button type="primary" onClick={handleApplyCoupon}>
+            Apply Coupon
+          </Button>
+        </div>
+
+        <div className="w-[470px] h-[324px] opacity-100 rounded border-[2px] border-[#000] py-8 px-6">
+          <p className="font-medium text-xl leading-7 tracking-[0%] text-[#000]">
+            Cart Total
+          </p>
+
+          <div className="flex items-center justify-between mt-6">
+            <p className="font-normal text-base leading-6 tracking-[0%] font-poppins">
+              Subtotal:
+            </p>
+            <p className="font-normal text-base leading-6 tracking-[0%] font-poppins">
+              ${subtotal}
+            </p>
+          </div>
+
+          <hr className="mt-4 mb-4 border-[#A6A6A6]" />
+
+          <div className="flex items-center justify-between">
+            <p className="font-normal text-base leading-6 tracking-[0%] font-poppins">
+              Shipping:
+            </p>
+            <p className="font-normal text-base leading-6 tracking-[0%] font-poppins">
+              Free
+            </p>
+          </div>
+
+          <hr className="mt-4 mb-4 border-[#A6A6A6]" />
+
+          <div className="flex items-center justify-between mb-4">
+            <p className="font-normal text-base leading-6 tracking-[0%] font-poppins">
+              Total:
+            </p>
+            <p className="font-normal text-base leading-6 tracking-[0%] font-poppins">
+              ${subtotal - subtotal * discount}
+            </p>
+          </div>
+
+          <div className="flex justify-center">
+            <Button type="primary">Proceed to checkout</Button>
+          </div>
         </div>
       </div>
     </div>
