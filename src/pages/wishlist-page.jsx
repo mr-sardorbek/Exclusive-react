@@ -73,6 +73,37 @@ const Wishlist = () => {
     localStorage.setItem("wishlist", JSON.stringify([]));
   };
 
+  // add to cart
+
+  const [addedItems, setAddedItems] = useState([]);
+
+  useEffect(() => {
+    const savedCart = JSON.parse(localStorage.getItem("cart")) || [];
+    setAddedItems(savedCart.map((item) => item.id));
+  }, []);
+
+  const addToCart = (product) => {
+    const savedCart = JSON.parse(localStorage.getItem("cart")) || [];
+    const existing = savedCart.find((item) => item.id === product.id);
+
+    let updatedCart;
+    if (existing) {
+      updatedCart = savedCart.map((item) =>
+        item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
+      );
+    } else {
+      updatedCart = [...savedCart, { ...product, quantity: 1 }];
+    }
+
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
+
+    if (!addedItems.includes(product.id)) {
+      setAddedItems((prev) => [...prev, product.id]);
+    }
+
+    window.dispatchEvent(new Event("cart-updated"));
+  };
+
   return (
     <div className="container mx-auto">
       <div className="h-[100%] mt-[80px] mb-[80px] ">
@@ -96,22 +127,22 @@ const Wishlist = () => {
                     src={product.img}
                     alt={product.title}
                   />
-                   {product.discount && (
-                      <p
-                        className="absolute top-3 left-3 w-[55px] h-[26px] rounded px-3 py-1 bg-[#DB4444] font-normal text-xs
+                  {product.discount && (
+                    <p
+                      className="absolute top-3 left-3 w-[55px] h-[26px] rounded px-3 py-1 bg-[#DB4444] font-normal text-xs
                 leading-[18px] text-[#fafafa] font-poppins"
-                      >
-                        {product.discount}%
-                      </p>
-                    )}
-                     {product.new && (
-                      <p
-                        className="absolute top-3 left-3  w-[55px] h-[26px] rounded px-3 py-1 bg-[#00FF66] font-normal text-xs
+                    >
+                      {product.discount}%
+                    </p>
+                  )}
+                  {product.new && (
+                    <p
+                      className="absolute top-3 left-3  w-[55px] h-[26px] rounded px-3 py-1 bg-[#00FF66] font-normal text-xs
              leading-[18px] text-[#fafafa] font-poppins"
-                      >
-                        NEW
-                      </p>
-                    )}
+                    >
+                      NEW
+                    </p>
+                  )}
                   <button
                     onClick={() => removeFromWishlist(product.id)}
                     className="absolute top-3 right-3 bg-[#fff] rounded-[50%] cursor-pointer"
@@ -119,7 +150,13 @@ const Wishlist = () => {
                     <img src={DeleteIcon} alt="deleteicon" />
                   </button>
 
-                  <Btns />
+                  <Btns
+                    onClick={() => addToCart(product)}
+                    disabled={addedItems.includes(product.id)}
+                    label={
+                      addedItems.includes(product.id) ? "Added" : "Add To Cart"
+                    }
+                  />
                 </div>
 
                 <h3 className="font-medium text-base leading-6 font-poppins mt-4 text-[#000]">
@@ -177,7 +214,15 @@ const Wishlist = () => {
                     <button className="absolute top-3 right-3 bg-[#fff] rounded-[50%] cursor-pointer">
                       <img src={EyeIcon} alt="eyeicon" />
                     </button>
-                    <Btns />
+                    <Btns
+                      onClick={() => addToCart(product)}
+                      disabled={addedItems.includes(product.id)}
+                      label={
+                        addedItems.includes(product.id)
+                          ? "Added"
+                          : "Add To Cart"
+                      }
+                    />
                   </div>
 
                   <h3 className="font-medium text-base leading-6 font-poppins mt-4 text-[#000]">

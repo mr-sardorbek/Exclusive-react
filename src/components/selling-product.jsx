@@ -76,6 +76,37 @@ const SellingProduct = () => {
       setWishlist(updatedWishlist);
       localStorage.setItem("wishlist", JSON.stringify(updatedWishlist));
     };
+
+
+    const [addedItems, setAddedItems] = useState([]); 
+    
+    useEffect(() => {
+      const savedCart = JSON.parse(localStorage.getItem("cart")) || [];
+      setAddedItems(savedCart.map((item) => item.id));
+    }, []);
+    
+    // ADD TO CART 
+    const addToCart = (product) => {
+      const savedCart = JSON.parse(localStorage.getItem("cart")) || [];
+      const existing = savedCart.find((item) => item.id === product.id);
+    
+      let updatedCart;
+      if (existing) {
+        updatedCart = savedCart.map((item) =>
+          item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
+        );
+      } else {
+        updatedCart = [...savedCart, { ...product, quantity: 1 }];
+      }
+    
+      localStorage.setItem("cart", JSON.stringify(updatedCart));
+    
+      if (!addedItems.includes(product.id)) {
+        setAddedItems((prev) => [...prev, product.id]);
+      }
+    
+        window.dispatchEvent(new Event("cart-updated"));
+    };
   
   return (
      <div className="mt-[60px] mb-[140px]">
@@ -117,7 +148,11 @@ const SellingProduct = () => {
             <button className="absolute top-[54px] right-3 bg-[#fff] rounded-[50%] cursor-pointer">
               <img src={EyeIcon} alt="eyeicon" />
             </button>
-            <Button />
+            <Button
+  onClick={() => addToCart(product)}
+  disabled={addedItems.includes(product.id)}
+  label={addedItems.includes(product.id) ? "Added" : "Add To Cart"}
+/>
           </div>
 
           <h3 className="font-medium text-base leading-6 font-poppins mt-4 text-[#000]">

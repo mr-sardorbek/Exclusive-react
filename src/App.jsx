@@ -7,6 +7,7 @@ import Footer from "./components/footer";
 import SignUp from "./pages/sign-up";
 import LogIn from "./pages/log-in";
 import Wishlist from "./pages/wishlist-page";
+import CartPage from "./pages/cart-page";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<LogIn/>} />
           <Route path="/wishlist" element={<Wishlist/>} />
+          <Route path="/cartpage" element={<CartPage/>} />
         </Routes>
       </main>
 

@@ -1,12 +1,19 @@
-import React from 'react'
+import React from 'react';
 
-const Button = () => {
+const Button = ({ label, onClick, disabled }) => {
   return (
-    <div>
-      <button className='add-to-cart-btn font-poppins
-    '>Add To Cart</button>
-    </div>
-  )
-}
+    <button
+      onClick={onClick}
+      disabled={disabled}
+      className={`add-to-cart-btn font-poppins px-4 py-2 rounded ${
+        disabled ? "bg-gray-400 cursor-not-allowed" : "bg-[#DB4444] text-white"
+      }`}
+    >
+      {label}
+    </button>
+  );
+};
 
-export default Button
+export default Button;
+
+
