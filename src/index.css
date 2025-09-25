@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import "tailwindcss";
 
+
 */
 
 html, body, div, span, applet, object, iframe,
@@ -24,7 +25,7 @@ time, mark, audio, video {
 	font: inherit;
 	vertical-align: baseline;
 }
-/* HTML5 display-role reset for older browsers */
+
 article, aside, details, figcaption, figure, 
 footer, header, hgroup, menu, nav, section {
 	display: block;
@@ -165,7 +166,17 @@ background-color: rgb(237, 238, 238) !important;
 
 
     
+
+.radio-custom {
+    @apply appearance-none w-5 h-5 border-2 border-black rounded-full relative;
+  }
+  
+  .radio-custom:checked::after {
+    content: "";
+    @apply w-3 h-3 bg-black rounded-full absolute top-1/2 left-1/2;
+    transform: translate(-50%, -50%);
     
+  }
 
 
 

@@ -25,7 +25,7 @@ const CartPage = () => {
     localStorage.setItem("cart", JSON.stringify(updated));
   };
 
-  // Coupon kod (SARDOR05)
+  // Coupon kod (SALE10)
 
   const [coupon, setCoupon] = useState("");
   const [discount, setDiscount] = useState(0);
@@ -36,7 +36,7 @@ const CartPage = () => {
   );
 
   const handleApplyCoupon = () => {
-    if (coupon.trim().toUpperCase() === "SARDOR05") {
+    if (coupon.trim().toUpperCase() === "SALE10") {
       setDiscount(0.1);
     } else {
       setDiscount(0);
