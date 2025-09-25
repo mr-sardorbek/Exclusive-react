@@ -228,12 +228,12 @@ const Navbar = () => {
                     className="user-modal absolute w-[224px] h-[208px] right-0.5    backdrop-blur-[10px] shadow-lg rounded pt-[18px]
                   pr-3 pl-[20px] pb-[10px] z-50"
                   >
-                    <div className="user-item flex items-center w-[192px] h-8 hover:bg-[rgba(183,162,162,0.1)]  rounded-md cursor-pointer ">
+                    <Link to='/account' className="user-item flex items-center w-[192px] h-8 hover:bg-[rgba(183,162,162,0.1)]  rounded-md cursor-pointer ">
                       <span className="flex items-center justify-between gap-4 font-poppins text-[#fafafa] font-normal text-sm leading-[21px] tracking-[0%] text-center">
                         <img src={UserIconWhite} alt="userwhiteicon" />
                         Manage My Account
                       </span>
-                    </div>
+                    </Link>
                     <div className="flex items-center w-[192px] h-6 mt-[13px] hover:bg-[rgba(183,162,162,0.1)] rounded-md cursor-pointer ">
                       <span className="flex items-center justify-between gap-4 font-poppins text-[#fafafa] font-normal text-sm leading-[21px] tracking-[0%] text-center">
                         <img src={MallBag} alt="mallbag" />

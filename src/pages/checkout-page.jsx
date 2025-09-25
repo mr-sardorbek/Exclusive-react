@@ -36,6 +36,7 @@ const Checkout = () => {
       
     } else {
       setDiscount(0);
+
     }
   };
 
