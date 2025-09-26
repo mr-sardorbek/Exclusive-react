@@ -10,6 +10,7 @@ import Wishlist from "./pages/wishlist-page";
 import CartPage from "./pages/cart-page";
 import Checkout from "./pages/checkout-page";
 import Account from "./pages/account-page";
+import About from "./pages/about";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           <Route path="/cartpage" element={<CartPage/>} />
           <Route path="/checkout" element={<Checkout/>} />
           <Route path="/account" element={<Account/>} />
+          <Route path="/about" element={<About/>} />
         </Routes>
       </main>
 
