@@ -179,4 +179,20 @@ background-color: rgb(237, 238, 238) !important;
   }
 
 
+.statistics__item:hover {
+  background-color: #DB4444;
+}
+
+.statistics__item:hover svg path {
+  stroke: black;
+}
+
+.statistics__item:hover svg path {
+  fill: white;
+}
+
+.statistics__item:hover svg circle {
+  fill:  white;
+}
+
 
