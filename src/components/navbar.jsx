@@ -234,12 +234,14 @@ const Navbar = () => {
                         Manage My Account
                       </span>
                     </Link>
+                    <Link to='/product'>
                     <div className="flex items-center w-[192px] h-6 mt-[13px] hover:bg-[rgba(183,162,162,0.1)] rounded-md cursor-pointer ">
                       <span className="flex items-center justify-between gap-4 font-poppins text-[#fafafa] font-normal text-sm leading-[21px] tracking-[0%] text-center">
                         <img src={MallBag} alt="mallbag" />
                         My Order
                       </span>
                     </div>
+                    </Link>
                     <div className="flex items-center w-[192px] h-6 mt-[13px] hover:bg-[rgba(183,162,162,0.1)] rounded-md cursor-pointer ">
                       <span className="flex items-center justify-between gap-4 font-poppins text-[#fafafa] font-normal text-sm leading-[21px] tracking-[0%] text-center">
                         <img src={Cancel} alt="cancel" />
