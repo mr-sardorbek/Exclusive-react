@@ -6,6 +6,7 @@ import Smith from "../assets/images/smith.png";
 import BlackTwitter from '../assets/icons/black-twitter.svg'
 import BlackInstagram from '../assets/icons/black-instagram.svg'
 import BlackLinkiden from '../assets/icons/black-linkiden.svg'
+import Services from "../components/services";
 
 const employees = [
   {
@@ -240,7 +241,8 @@ const About = () => {
         </div>
       </div>
 
-
+        
+        <Services/>
     
 
     </div>

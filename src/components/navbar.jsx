@@ -84,7 +84,7 @@ const Navbar = () => {
                 </Link>
               </li>
               <li className="font-poppins font-normal text-base leading-6 tracking-[0%] text-center relative  after:absolute after:bottom-0 after:left-1/2 after:w-0 after:h-[1.5px] after:bg-black after:-translate-x-1/2 after:transition-all after:duration-300 hover:after:w-full [&.active]:after:w-full">
-                <Link className="font-poppins font-[Poppins] no-underline text-black leading-6">
+                <Link to='/contact' className="font-poppins font-[Poppins] no-underline text-black leading-6">
                   Contact
                 </Link>
               </li>
