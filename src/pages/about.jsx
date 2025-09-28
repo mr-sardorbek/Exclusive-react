@@ -1,5 +1,32 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import AboutSideImg from "../assets/images/about-img.png";
+import Tom from "../assets/images/tom.png";
+import Emma from "../assets/images/emma.png";
+import Smith from "../assets/images/smith.png";
+import BlackTwitter from '../assets/icons/black-twitter.svg'
+import BlackInstagram from '../assets/icons/black-instagram.svg'
+import BlackLinkiden from '../assets/icons/black-linkiden.svg'
+
+const employees = [
+  {
+    id: 1,
+    img : Tom ,
+    name: "Tom Cruise",
+    job: 'Founder & Chairman'
+  },
+  {
+    id: 2,
+    img : Emma ,
+    name: "Emma Watson",
+    job: 'Managing Director'
+  },
+  {
+    id: 3,
+    img : Smith ,
+    name: "Will Smith",
+    job: 'Product Designer'
+  }
+]
 
 const statistics = [
   {
@@ -101,6 +128,21 @@ const statistics = [
 ]
 
 const About = () => {
+
+  
+
+    const slides = [1, 2, 3,4, 5]; 
+  const [current, setCurrent] = useState(0);
+  const slideRef = useRef(null);
+  const totalSlides = slides.length;
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % totalSlides);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [totalSlides]);
+  
   return (
     <div className="container mx-auto">
       <div className="flex items-center gap-[12px] w-[455px] h-[21px] mt-[80px] mb-[42px] ">
@@ -135,18 +177,72 @@ const About = () => {
       </div>
 
       <div className="flex items-center gap-[30px] h-[230px] mb-[140px]">
-        {statistics.map((statistic) => (
-        <div key={statistic.id}
+        {statistics.map((stat) => (
+        <div key={stat.id}
           className="statistics__item w-[270px] h-[230px] flex flex-col items-center justify-center opacity-100 border rounded border-[#BDBDBD]
       cursor-pointer hover:bg-[#DB4444] transition-all duration-300 hover:text-white"
         >
-          {statistic.icon}
+          {stat.icon}
 
-          <p className="font-bold text-[32px] leading-[30px] tracking-[4%] inter mt-6">{statistic.number}k</p>
-          <p className="font-normal text-base leading-6 tracking-[0%] text-center font-poppins mt-3">{statistic.desc}</p>
+          <p className="font-bold text-[32px] leading-[30px] tracking-[4%] inter mt-6">{stat.number}k</p>
+          <p className="font-normal text-base leading-6 tracking-[0%] text-center font-poppins mt-3">{stat.desc}</p>
         </div>
         ))}
       </div>
+
+    {/*Employees */}
+    <div className="relative overflow-hidden h-[564px] mb-[40px]">
+        <div
+          ref={slideRef}
+          className="flex transition-transform duration-700 ease-in-out"
+          style={{ transform: `translateX(-${current * 100}%)` }}
+        >
+          {slides.map((_, index) => (
+            <div key={index} className="flex-shrink-0 flex items-center justify-between w-full">
+              {employees.map((employee) => (
+                <div className="w-[370px]" key={employee.id}>
+                  <div className="flex justify-center h-[430px] bg-[#F5F5F5] pt-[39px] rounded ">
+                    <img src={employee.img} alt={employee.name} />
+                  </div>
+                  <p className="font-medium text-[32px] leading-[30px] tracking-[4%] inter mt-8">
+                    {employee.name}
+                  </p>
+                  <p className="font-normal text-base leading-6 tracking-[0%] font-poppins mt-2">
+                    {employee.job}
+                  </p>
+
+                  <div className="flex items-center gap-4 mt-4">
+                    <img src={BlackTwitter} alt="Black-Twitter" />
+                    <img src={BlackInstagram} alt="Black-Instagram" />
+                    <img src={BlackLinkiden} alt="Black-Linkiden" />
+                  </div>
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
+
+     
+      <div className="flex justify-center items-center ml-[130px] mb-[140px]">
+        <div className="flex items-center gap-3 bottom-3 left-1/2 -translate-x-1/2">
+          {slides.map((_, index) => (
+            <div
+              key={index}
+              onClick={() => setCurrent(index)}
+              className={`cursor-pointer rounded-full ${
+                current === index
+                  ? "w-[14px] h-[14px] bg-[#DB4444] border-2 p-1.5 border-[#807b7b]"
+                  : "w-[12px] h-[12px] bg-gray-500"
+              }`}
+            ></div>
+          ))}
+        </div>
+      </div>
+
+
+    
+
     </div>
   );
 };
