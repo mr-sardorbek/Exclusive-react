@@ -108,7 +108,11 @@ const SellingProduct = () => {
         window.dispatchEvent(new Event("cart-updated"));
     };
   
+
+     const [selectedProduct, setSelectedProduct] = useState(null);
+      const [isModalOpen, setIsModalOpen] = useState(false);
   return (
+    <>
      <div className="mt-[60px] mb-[140px]">
       <div className="flex items-center gap-[30px] w-max ">
        {products.map((product) => {
@@ -145,9 +149,15 @@ const SellingProduct = () => {
                     />
                   </svg>
                 </button>
-            <button className="absolute top-[54px] right-3 bg-[#fff] rounded-[50%] cursor-pointer">
-              <img src={EyeIcon} alt="eyeicon" />
-            </button>
+            <button
+                              onClick={() => {
+                                setSelectedProduct(product);
+                                setIsModalOpen(true);
+                              }}
+                              className="absolute p-0.5 top-[54px] right-3 bg-[#fff] rounded-full cursor-pointer"
+                            >
+                              <img src={EyeIcon} alt="eyeicon" />
+                            </button>
             <Button
   onClick={() => addToCart(product)}
   disabled={addedItems.includes(product.id)}
@@ -193,6 +203,64 @@ const SellingProduct = () => {
        })}
     </div>
     </div>
+
+    {selectedProduct && (
+            <div className="fixed inset-0 bg-[#00000080] flex items-center justify-center z-50">
+              <div className="bg-white p-6 rounded-lg w-[400px] relative shadow-lg">
+                <button
+                  onClick={() => setSelectedProduct(null)}
+                  className="absolute top-2 right-4 text-2xl font-bold"
+                >
+                  &times;
+                </button>
+    
+                <img
+                  src={selectedProduct.img}
+                  alt={selectedProduct.title}
+                  className="w-[250px] h-[250px] object-contain mx-auto"
+                />
+                <p className="text-xl font-semibold text-center mt-2">
+                  {selectedProduct.title}
+                </p>
+    
+                <div className="flex items-center justify-center gap-2 mt-2">
+                  {Array(Math.floor(selectedProduct.rating))
+                    .fill()
+                    .map((_, i) => (
+                      <img key={i} src={FullStar} alt="fullstar" />
+                    ))}
+                  {selectedProduct.rating % 1 !== 0 && (
+                    <img src={HalfFilledStar} alt="halfstar" />
+                  )}
+                  {Array(5 - Math.ceil(selectedProduct.rating))
+                    .fill()
+                    .map((_, i) => (
+                      <img key={i} src={EmptyStar} alt="emptystar" />
+                    ))}
+                  <span className="text-[#808080]">
+                    ({selectedProduct.ratingCount})
+                  </span>
+                </div>
+    
+                <div className="flex items-center justify-center gap-3 mt-4">
+                  <span className="text-[#DB4444] text-lg font-semibold">
+                    ${selectedProduct.newprice}
+                  </span>
+                  <span className="font-poppins font-medium text-base line-through text-[#808080]">
+                ${selectedProduct.oldprice}
+              </span>
+                </div>
+    
+                <button
+                  onClick={() => addToCart(selectedProduct)}
+                  className="mt-6 bg-[#000] cursor-pointer h-[41px] text-white py-2 px-6 rounded w-full hover:bg-[#121111]"
+                >
+                  Add To Cart
+                </button>
+              </div>
+            </div>
+          )}
+    </>
   )
 }
 

@@ -104,89 +104,26 @@ const Wishlist = () => {
     window.dispatchEvent(new Event("cart-updated"));
   };
 
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
-    <div className="container mx-auto">
-      <div className="h-[100%] mt-[80px] mb-[80px] ">
-        <div className="flex items-center justify-between">
-          <p>Wishlist ({wishlist.length})</p>
-          <Button onClick={moveAllToBag}>Move All To Bag</Button>
-        </div>
-
-        <div className="flex flex-wrap items-center mt-[60px] gap-[30px] ">
-          {wishlist.length === 0 ? (
-            <p>Your wishlist is empty</p>
-          ) : (
-            wishlist.map((product) => (
-              <div
-                key={product.id}
-                className="product__item w-[270px] h-[350px]"
-              >
-                <div className="relative h-[250px] rounded bg-[#F5F5F5] overflow-hidden">
-                  <img
-                    className="py-[35px] px-[40px]"
-                    src={product.img}
-                    alt={product.title}
-                  />
-                  {product.discount && (
-                    <p
-                      className="absolute top-3 left-3 w-[55px] h-[26px] rounded px-3 py-1 bg-[#DB4444] font-normal text-xs
-                leading-[18px] text-[#fafafa] font-poppins"
-                    >
-                      {product.discount}%
-                    </p>
-                  )}
-                  {product.new && (
-                    <p
-                      className="absolute top-3 left-3  w-[55px] h-[26px] rounded px-3 py-1 bg-[#00FF66] font-normal text-xs
-             leading-[18px] text-[#fafafa] font-poppins"
-                    >
-                      NEW
-                    </p>
-                  )}
-                  <button
-                    onClick={() => removeFromWishlist(product.id)}
-                    className="absolute top-3 right-3 bg-[#fff] rounded-[50%] cursor-pointer"
-                  >
-                    <img src={DeleteIcon} alt="deleteicon" />
-                  </button>
-
-                  <Btns
-                    onClick={() => addToCart(product)}
-                    disabled={addedItems.includes(product.id)}
-                    label={
-                      addedItems.includes(product.id) ? "Added" : "Add To Cart"
-                    }
-                  />
-                </div>
-
-                <h3 className="font-medium text-base leading-6 font-poppins mt-4 text-[#000]">
-                  {product.title}
-                </h3>
-
-                <p className="font-poppins font-medium text-base text-[#DB4444] mt-2">
-                  ${product.newprice}
-                </p>
-              </div>
-            ))
-          )}
-        </div>
-
-        <div className=" mt-[80px]">
+    <>
+      <div className="container mx-auto">
+        <div className="h-[100%] mt-[80px] mb-[80px] ">
           <div className="flex items-center justify-between">
-            <p
-              className="flex items-center h-[40px] border-l-[20px] border-[#DB4444] rounded pl-4
-           font-normal text-xl leading-[26px] tracking-[0%] text-center font-poppins text-black"
-            >
-              Just For You
-            </p>
-            <Button>See All</Button>
+            <p>Wishlist ({wishlist.length})</p>
+            <Button onClick={moveAllToBag}>Move All To Bag</Button>
           </div>
-          <div className="flex items-center gap-[30px] mt-[60px] mb-[140px] ">
-            {products.map((product) => {
-              return (
+
+          <div className="flex flex-wrap items-center mt-[60px] gap-[30px] ">
+            {wishlist.length === 0 ? (
+              <p>Your wishlist is empty</p>
+            ) : (
+              wishlist.map((product) => (
                 <div
                   key={product.id}
-                  className="product__item w-[270px] h-[350px] "
+                  className="product__item w-[270px] h-[350px]"
                 >
                   <div className="relative h-[250px] rounded bg-[#F5F5F5] overflow-hidden">
                     <img
@@ -194,14 +131,6 @@ const Wishlist = () => {
                       src={product.img}
                       alt={product.title}
                     />
-                    {product.new && (
-                      <p
-                        className="absolute top-3 left-3  w-[55px] h-[26px] rounded px-3 py-1 bg-[#00FF66] font-normal text-xs
-             leading-[18px] text-[#fafafa] font-poppins"
-                      >
-                        NEW
-                      </p>
-                    )}
                     {product.discount && (
                       <p
                         className="absolute top-3 left-3 w-[55px] h-[26px] rounded px-3 py-1 bg-[#DB4444] font-normal text-xs
@@ -210,10 +139,21 @@ const Wishlist = () => {
                         {product.discount}%
                       </p>
                     )}
-
-                    <button className="absolute top-3 right-3 bg-[#fff] rounded-[50%] cursor-pointer">
-                      <img src={EyeIcon} alt="eyeicon" />
+                    {product.new && (
+                      <p
+                        className="absolute top-3 left-3  w-[55px] h-[26px] rounded px-3 py-1 bg-[#00FF66] font-normal text-xs
+             leading-[18px] text-[#fafafa] font-poppins"
+                      >
+                        NEW
+                      </p>
+                    )}
+                    <button
+                      onClick={() => removeFromWishlist(product.id)}
+                      className="absolute top-3 right-3 bg-[#fff] rounded-[50%] cursor-pointer"
+                    >
+                      <img src={DeleteIcon} alt="deleteicon" />
                     </button>
+
                     <Btns
                       onClick={() => addToCart(product)}
                       disabled={addedItems.includes(product.id)}
@@ -229,41 +169,168 @@ const Wishlist = () => {
                     {product.title}
                   </h3>
 
-                  <div className="flex items-center  gap-2 w-[94px] h-[20px] mt-2">
-                    <p className="font-poppins font-medium text-base text-[#DB4444]">
-                      ${product.newprice}
-                    </p>
-                    <p className="font-poppins font-medium text-base line-through text-[#808080]">
-                      {product.oldprice}
-                    </p>
-                  </div>
-                  <div className="flex items-center justify-between gap-2 mt-2  w-[140px]">
-                    <div className="flex items-center justify-between w-[100px]">
-                      {Array(Math.floor(product.rating))
-                        .fill()
-                        .map((_, i) => (
-                          <img key={i} src={FullStar} alt="fullstar" />
-                        ))}
-                      {product.rating % 1 !== 0 && (
-                        <img src={HalfFilledStar} alt="halfstar" />
-                      )}
-                      {Array(5 - Math.ceil(product.rating))
-                        .fill()
-                        .map((_, i) => (
-                          <img key={i} src={EmptyStar} alt="emptystar" />
-                        ))}
-                    </div>
-                    <p className="font-semibold text-sm text-[#808080] font-poppins">
-                      ({product.ratingCount})
-                    </p>
-                  </div>
+                  <p className="font-poppins font-medium text-base text-[#DB4444] mt-2">
+                    ${product.newprice}
+                  </p>
                 </div>
-              );
-            })}
+              ))
+            )}
+          </div>
+
+          <div className=" mt-[80px]">
+            <div className="flex items-center justify-between">
+              <p
+                className="flex items-center h-[40px] border-l-[20px] border-[#DB4444] rounded pl-4
+           font-normal text-xl leading-[26px] tracking-[0%] text-center font-poppins text-black"
+              >
+                Just For You
+              </p>
+              <Button>See All</Button>
+            </div>
+            <div className="flex items-center gap-[30px] mt-[60px] mb-[140px] ">
+              {products.map((product) => {
+                return (
+                  <div
+                    key={product.id}
+                    className="product__item w-[270px] h-[350px] "
+                  >
+                    <div className="relative h-[250px] rounded bg-[#F5F5F5] overflow-hidden">
+                      <img
+                        className="py-[35px] px-[40px]"
+                        src={product.img}
+                        alt={product.title}
+                      />
+                      {product.new && (
+                        <p
+                          className="absolute top-3 left-3  w-[55px] h-[26px] rounded px-3 py-1 bg-[#00FF66] font-normal text-xs
+             leading-[18px] text-[#fafafa] font-poppins"
+                        >
+                          NEW
+                        </p>
+                      )}
+                      {product.discount && (
+                        <p
+                          className="absolute top-3 left-3 w-[55px] h-[26px] rounded px-3 py-1 bg-[#DB4444] font-normal text-xs
+                leading-[18px] text-[#fafafa] font-poppins"
+                        >
+                          {product.discount}%
+                        </p>
+                      )}
+
+                      <button
+                        onClick={() => {
+                          setSelectedProduct(product);
+                          setIsModalOpen(true);
+                        }}
+                        className="absolute p-0.5 top-[14px] right-3 bg-[#fff] rounded-full cursor-pointer"
+                      >
+                        <img src={EyeIcon} alt="eyeicon" />
+                      </button>
+                      <Btns
+                        onClick={() => addToCart(product)}
+                        disabled={addedItems.includes(product.id)}
+                        label={
+                          addedItems.includes(product.id)
+                            ? "Added"
+                            : "Add To Cart"
+                        }
+                      />
+                    </div>
+
+                    <h3 className="font-medium text-base leading-6 font-poppins mt-4 text-[#000]">
+                      {product.title}
+                    </h3>
+
+                    <div className="flex items-center  gap-2 w-[94px] h-[20px] mt-2">
+                      <p className="font-poppins font-medium text-base text-[#DB4444]">
+                        ${product.newprice}
+                      </p>
+                      <p className="font-poppins font-medium text-base line-through text-[#808080]">
+                        {product.oldprice}
+                      </p>
+                    </div>
+                    <div className="flex items-center justify-between gap-2 mt-2  w-[140px]">
+                      <div className="flex items-center justify-between w-[100px]">
+                        {Array(Math.floor(product.rating))
+                          .fill()
+                          .map((_, i) => (
+                            <img key={i} src={FullStar} alt="fullstar" />
+                          ))}
+                        {product.rating % 1 !== 0 && (
+                          <img src={HalfFilledStar} alt="halfstar" />
+                        )}
+                        {Array(5 - Math.ceil(product.rating))
+                          .fill()
+                          .map((_, i) => (
+                            <img key={i} src={EmptyStar} alt="emptystar" />
+                          ))}
+                      </div>
+                      <p className="font-semibold text-sm text-[#808080] font-poppins">
+                        ({product.ratingCount})
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>
-    </div>
+
+      {selectedProduct && (
+        <div className="fixed inset-0 bg-[#00000080] flex items-center justify-center z-50">
+          <div className="bg-white p-6 rounded-lg w-[400px] relative shadow-lg">
+            <button
+              onClick={() => setSelectedProduct(null)}
+              className="absolute top-2 right-4 text-2xl font-bold"
+            >
+              &times;
+            </button>
+
+            <img
+              src={selectedProduct.img}
+              alt={selectedProduct.title}
+              className="w-[250px] h-[250px] object-contain mx-auto"
+            />
+            <p className="text-xl font-semibold text-center mt-2">
+              {selectedProduct.title}
+            </p>
+
+            <div className="flex items-center justify-center gap-2 mt-2">
+              {Array(Math.floor(selectedProduct.rating))
+                .fill()
+                .map((_, i) => (
+                  <img key={i} src={FullStar} alt="fullstar" />
+                ))}
+              {selectedProduct.rating % 1 !== 0 && (
+                <img src={HalfFilledStar} alt="halfstar" />
+              )}
+              {Array(5 - Math.ceil(selectedProduct.rating))
+                .fill()
+                .map((_, i) => (
+                  <img key={i} src={EmptyStar} alt="emptystar" />
+                ))}
+              <span className="text-[#808080]">
+                ({selectedProduct.ratingCount})
+              </span>
+            </div>
+
+            <div className="flex items-center justify-center gap-3 mt-4">
+              <span className="text-[#DB4444] text-lg font-semibold">
+                ${selectedProduct.newprice}
+              </span>
+            </div>
+
+            <button
+              onClick={() => addToCart(selectedProduct)}
+              className="mt-6 bg-[#000] cursor-pointer h-[41px] text-white py-2 px-6 rounded w-full hover:bg-[#121111]"
+            >
+              Add To Cart
+            </button>
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 
